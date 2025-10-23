@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario de Contacto</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/login_avanzado.css" />
+
+  <!-- Tu JS global -->
+  <script src="../js/script.js" defer></script>
+</head>
+<body>
+  <div class="contenedor-formularios contact-container">
+    <h2>Contacto</h2>
+
+    <form id="FormContacto" name="FormContacto" action="#" method="post" onsubmit="return validar();">
+      <!-- Correo -->
+      <div class="contenedor-input">
+        <label for="correo">Correo Electrónico <span class="req">*</span></label>
+        <input
+          type="email"
+          id="correo"
+          name="correo"
+          placeholder="usuario@mail.com"
+          required
+          maxlength="100"
+          title="Ingresa un correo válido (ej. usuario@mail.com)" />
+      </div>
+
+      <!-- Fecha de Nacimiento -->
+      <div class="contenedor-input">
+        <label for="fecha">Fecha de Nacimiento <span class="req">*</span></label>
+        <input
+          type="date"
+          id="fecha"
+          name="fecha"
+          required
+          title="Selecciona tu fecha de nacimiento" />
+      </div>
+
+      <!-- Teléfono -->
+      <div class="contenedor-input">
+        <label for="telefono">Teléfono <span class="req">*</span></label>
+        <input
+          type="tel"
+          id="telefono"
+          name="telefono"
+          placeholder="Ej: +593 99 999 9999"
+          inputmode="tel"
+          required
+          maxlength="20"
+          pattern="^[0-9+\s\-()]{7,20}$"
+          title="Ingresa un número válido (7 a 20 dígitos, puede incluir +, espacios, guiones o paréntesis)" />
+      </div>
+
+      <!-- Botón Enviar (usa tu función existente) -->
+      <button type="button" id="btnEnviar" class="button button-block" onclick="enviarFormulario(this)">
+        Enviar
+      </button>
+    </form>
+  </div>
+
+  <!-- Sección de matrículas/Contactos guardados -->
+  <div class="contenedor-formularios matriculas-guardadas" id="matriculasGuardadas" style="display:none;">
+    <h3>📋 Contactos guardados</h3>
+    <div id="listaMatriculas"></div>
+
+    <div style="text-align:center; margin-top:15px;">
+      <button
+        type="button"
+        id="btnLimpiarMatriculas"
+        class="button button-block"
+      >
+        🗑️ Limpiar Todos
+      </button>
+    </div>
+  </div>
+</body>
+</html>

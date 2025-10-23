@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login y Registro</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/login_avanzado.css" />
+
+  <!-- JS externo (con defer para que el DOM ya exista al ejecutar) -->
+  <script src="../js/form_login_tabs.js" defer></script>
+</head>
+
+<body>
+  <div class="contenedor-formularios" id="form_login">
+
+    <!-- Pestañas -->
+    <ul class="contenedor-tabs" role="tablist" aria-label="Cambiar entre iniciar sesión y registrarse">
+      <li class="active">
+        <a id="btnIniciar" role="tab" aria-controls="loginPanel" aria-selected="true" data-target="#loginPanel">Iniciar Sesión</a>
+      </li>
+      <li>
+        <a id="btnRegistrar" role="tab" aria-controls="registerPanel" aria-selected="false" data-target="#registerPanel">Registrarse</a>
+      </li>
+    </ul>
+
+    <!-- Contenido -->
+    <div class="contenido-tab">
+      <!-- Panel Iniciar Sesión (activo por defecto) -->
+      <div id="loginPanel" role="tabpanel" aria-labelledby="btnIniciar" class="is-active">
+        <form id="FormLoginAvanzado" name="FormLoginAvanzado" action="#" method="post" novalidate>
+          <div class="contenedor-input">
+            <label for="loginUsuario">Correo o Usuario <span class="req">*</span></label>
+            <input type="text" id="loginUsuario" name="usuario" required minlength="3" maxlength="50"
+                   placeholder="usuario@correo.com"
+                   title="Ingrese su correo electrónico o nombre de usuario (mínimo 3 caracteres)" />
+          </div>
+
+          <div class="contenedor-input">
+            <label for="loginPassword">Contraseña <span class="req">*</span></label>
+            <input type="password" id="loginPassword" name="password" required minlength="6" maxlength="20"
+                   placeholder="••••••" title="Ingrese su contraseña (mínimo 6 caracteres)" />
+          </div>
+
+          <button type="submit" class="button button-block">Iniciar Sesión</button>
+        </form>
+      </div>
+
+      <!-- Panel Registro -->
+      <div id="registerPanel" role="tabpanel" aria-labelledby="btnRegistrar">
+        <form id="FormRegistroAvanzado" name="FormRegistroAvanzado" action="#" method="post" novalidate>
+          <div class="contenedor-input">
+            <label for="nombre">Nombre completo <span class="req">*</span></label>
+            <input type="text" id="nombre" name="nombre" required minlength="3" maxlength="50"
+                   pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+                   placeholder="Ejemplo: Juan Pérez"
+                   title="Solo letras y espacios, mínimo 3 caracteres." />
+          </div>
+
+          <div class="contenedor-input">
+            <label for="correo">Correo electrónico <span class="req">*</span></label>
+            <input type="email" id="correo" name="correo" required
+                   placeholder="ejemplo@correo.com" title="Ingrese un correo electrónico válido." />
+          </div>
+
+          <div class="contenedor-input">
+            <label for="edad">Edad <span class="req">*</span></label>
+            <input type="number" id="edad" name="edad" required min="18" max="99"
+                   placeholder="18" title="Debe tener entre 18 y 99 años." />
+          </div>
+
+          <div class="contenedor-input">
+            <label for="fecha">Fecha de nacimiento <span class="req">*</span></label>
+            <input type="date" id="fecha" name="fecha" required
+                   title="Seleccione una fecha de nacimiento válida." />
+          </div>
+
+          <div class="contenedor-input">
+            <label for="password">Contraseña <span class="req">*</span></label>
+            <input type="password" id="password" name="password" required minlength="6" maxlength="20"
+                   placeholder="••••••" title="La contraseña debe tener entre 6 y 20 caracteres." />
+          </div>
+
+          <button type="submit" class="button button-block">Registrarse</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

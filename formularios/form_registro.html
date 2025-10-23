@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/login_avanzado.css">
+  
+</head>
+<body>
+  <form>
+       
+    <!-- Primera Parte: Dirección de Envío -->
+    <fieldset>
+      <legend>DIRECCIÓN DE ENVÍO</legend>
+
+      <label for="calle">Calle Principal:</label>
+      <input 
+        type="text" 
+        id="calle" 
+        name="calle" 
+        required
+        minlength="5"
+        maxlength="100"
+        placeholder="Ingrese la calle principal"
+        title="Ingrese el nombre de la calle principal (mínimo 5 caracteres)">
+
+      <label for="transversal">Transversal:</label>
+      <input 
+        type="text" 
+        id="transversal" 
+        name="transversal" 
+        required
+        minlength="3"
+        maxlength="100"
+        placeholder="Ingrese la transversal"
+        title="Ingrese el nombre de la transversal (mínimo 3 caracteres)">
+
+      <label>
+        <input type="checkbox" id="propietario" name="entrega" value="propietario">
+        Entrega al propietario.
+      </label>
+
+      <label>
+        <input type="checkbox" id="tercero" name="entrega" value="tercero">
+        Entrega a un tercero.
+      </label>
+
+      <label for="canton">Cantones:</label>
+      <select id="canton" name="canton" required>
+        <option value="">Seleccione</option>
+        <option value="Quito">Quito</option>
+        <option value="Guayaquil">Guayaquil</option>
+        <option value="Cuenca">Cuenca</option>
+      </select>
+
+      <button type="submit" id="btnEnviar" disabled>ENVIAR DATOS</button>
+    </fieldset>
+
+    <!-- Segunda Parte: Información Confidencial -->
+    <fieldset id="infoConfidencial" class="hidden">
+      <legend>INFORMACIÓN CONFIDENCIAL</legend>
+
+      <label for="postal">Código Postal:</label>
+      <input 
+        type="text" 
+        id="postal" 
+        name="postal" 
+        pattern="\d{5}" 
+        placeholder="Ej: 12345"
+        title="Ingrese un código postal de 5 dígitos">
+
+      <label for="referencia">Referencia de la Dirección:</label>
+      <textarea 
+        id="referencia" 
+        name="referencia" 
+        minlength="10" 
+        maxlength="200"
+        placeholder="Ingrese una referencia de su dirección (mínimo 10 caracteres)"
+        title="Proporcione una referencia detallada (10-200 caracteres)"></textarea>
+
+      <button type="submit">Guardar</button>
+    </fieldset>
+  </form>
+
+  <script>
+    const chkPropietario = document.getElementById('propietario');
+    const chkTercero = document.getElementById('tercero');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const infoConfidencial = document.getElementById('infoConfidencial');
+    const campoPostal = document.getElementById('postal');
+    const campoReferencia = document.getElementById('referencia');
+
+    // Activar botón enviar solo si propietario está marcado
+    chkPropietario.addEventListener('change', () => {
+      btnEnviar.disabled = !chkPropietario.checked;
+    });
+
+    // Mostrar campo de información confidencial si tercero está marcado
+    chkTercero.addEventListener('change', () => {
+      infoConfidencial.classList.toggle('hidden', !chkTercero.checked);
+      
+      // Hacer campos obligatorios solo cuando se muestra el fieldset
+      if (chkTercero.checked) {
+        campoPostal.setAttribute('required', 'required');
+        campoReferencia.setAttribute('required', 'required');
+      } else {
+        campoPostal.removeAttribute('required');
+        campoReferencia.removeAttribute('required');
+      }
+    });
+  </script>
+</body>
+</html>

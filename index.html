@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Aplicación de Tecnologías WEB</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/login_avanzado.css">
+  <!-- Cargar jQuery antes del script principal -->
+  <script src="js/jquery.js"></script>
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <!-- HEADER WRAP (banner + menú) -->
+  <header class="header-wrap">
+    <div class="banner">
+      <img src="img/logo_ESPE.png" alt="ESPE Banner" style="width:400px; height:auto;">
+    </div>
+
+    <!-- Menú superior (todos modales) -->
+    <div class="menu-row">
+      <a href="#" data-modal="modalRegistro">Formulario Registro</a>
+      <a href="#" data-modal="modalProducto">Formulario Producto</a>
+    </div>
+  </header>
+
+  <!-- MAIN WRAP: 3 columnas -->
+  <div class="main-wrap">
+    <div class="cols">
+      <!-- Columna izquierda -->
+      <div class="col-left">
+        <div class="panel-botones">
+          <button class="boton-cuadro" id="btnLoginLeft">LOGIN</button>
+          <button class="boton-cuadro" data-modal="modalMatricula">MATRÍCULA</button>
+        </div>
+      </div>
+
+      <!-- Columna central -->
+      <div class="col-center">
+        <div class="tarjeta">
+          <h2>Aplicación de Tecnologías WEB</h2>
+          <p><strong>Estudiante:</strong> Dario Constante</p>
+          <p><strong>NRC:</strong> 29922</p>
+          <p><strong>Fecha:</strong> 01/06/2021</p>
+        </div>
+      </div>
+
+      <!-- Columna derecha -->
+      <div class="col-right">
+        <div class="video-box">
+            <video id="videoESPE" width="100%" height="250" style="border-radius:8px;" autoplay loop muted playsinline>
+              <source src="img/video_espe.mp4" type="video/mp4">
+              Tu navegador no soporta la reproducción de video.
+            </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer-bar">
+    <a href="#" data-modal="modalContacto">Contacto</a>
+  </footer>
+
+  <!-- Template embebido para login/registro (fallback estable dentro del modal) -->
+  <template id="tmplLogin">
+    <div class="contenedor-formularios">
+      <!-- Pestañas -->
+      <ul class="contenedor-tabs">
+        <li class="active"><a href="#" id="btnIniciar">Iniciar Sesión</a></li>
+        <li><a href="#" id="btnRegistrar">Registrarse</a></li>
+      </ul>
+
+      <!-- Contenido -->
+      <div class="contenido-tab">
+
+        <!-- Panel Iniciar Sesión -->
+        <div id="loginPanel">
+          <form id="FormLoginAvanzado" novalidate>
+            <div class="contenedor-input">
+              <label for="loginUsuario">Correo o Usuario <span class="req">*</span></label>
+              <input type="text" id="loginUsuario" name="usuario" required placeholder="usuario@correo.com">
+            </div>
+
+            <div class="contenedor-input">
+              <label for="loginPassword">Contraseña <span class="req">*</span></label>
+              <input type="password" id="loginPassword" name="password" required minlength="6" placeholder="••••••">
+            </div>
+
+            <button type="submit" class="button button-block">Iniciar Sesión</button>
+          </form>
+        </div>
+
+        <!-- Panel Registro -->
+        <div id="registerPanel">
+          <form id="FormRegistroAvanzado" novalidate>
+            <div class="contenedor-input">
+              <label for="nombre">Nombre completo <span class="req">*</span></label>
+              <input type="text" id="nombre" name="nombre" 
+                required minlength="2" maxlength="50"
+                pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" 
+                title="Solo letras y espacios" placeholder="Ejemplo: Juan Pérez">
+            </div>
+
+            <div class="contenedor-input">
+              <label for="correo">Correo electrónico <span class="req">*</span></label>
+              <input type="email" id="correo" name="correo" 
+                required placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="contenedor-input">
+              <label for="edad">Edad <span class="req">*</span></label>
+              <input type="number" id="edad" name="edad"
+                required min="18" max="99" title="Debe tener entre 18 y 99 años">
+            </div>
+
+            <div class="contenedor-input">
+              <label for="fecha">Fecha de nacimiento <span class="req">*</span></label>
+              <input type="date" id="fecha" name="fecha" required>
+            </div>
+
+            <div class="contenedor-input">
+              <label for="password">Contraseña <span class="req">*</span></label>
+              <input type="password" id="password" name="password"
+                required minlength="6" maxlength="20"
+                title="Debe tener entre 6 y 20 caracteres" placeholder="••••••">
+            </div>
+
+            <button type="submit" class="button button-block">Registrarse</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </template>
+</body>
+</html>

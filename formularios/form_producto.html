@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Producto</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/login_avanzado.css">
+</head>
+<body>
+  <h2>FORMULARIO DE PRODUCTO</h2>
+
+  <form id="FormProducto" name="FormProducto" action="#" method="post" enctype="multipart/form-data">
+    
+    <!-- DATOS BÁSICOS -->
+    <fieldset class="form-section">
+      <legend><strong>Datos Básicos</strong></legend>
+
+      <label for="nombreProducto">Nombre del Producto:</label><br>
+      <input type="text" id="nombreProducto" name="nombreProducto"
+             required minlength="3" maxlength="50"
+             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]+"
+             title="Ingrese un nombre válido (solo letras, números y espacios)."><br><br>
+
+      <label for="descripcion">Descripción:</label><br>
+      <textarea id="descripcion" name="descripcion" rows="3" cols="40"
+                required minlength="10" maxlength="300"
+                placeholder="Ingrese una descripción del producto."></textarea><br><br>
+
+      <label for="foto">Foto:</label><br>
+      <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+
+      <input type="checkbox" id="infoConfidencial" name="infoConfidencial">
+      <label for="infoConfidencial">Añadir información confidencial</label>
+    </fieldset>
+
+    <!-- DATOS ECONÓMICOS -->
+    <fieldset class="form-section">
+      <legend><strong>Datos Económicos</strong></legend>
+
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" name="precio" step="0.01" min="0.01" required title="Ingrese un precio válido."> $
+
+      <label for="impuesto">Impuestos:</label>
+      <select id="impuesto" name="impuesto" required>
+        <option value="">Seleccione un impuesto</option>
+        <option value="4">4%</option>
+        <option value="8">8%</option>
+        <option value="12">12%</option>
+      </select><br><br>
+
+      <p><strong>Promoción:</strong></p>
+      <input type="radio" id="ninguno" name="promocion" value="ninguno" checked>
+      <label for="ninguno">Ninguno</label><br>
+
+      <input type="radio" id="transporte" name="promocion" value="transporte">
+      <label for="transporte">Transporte Gratuito</label><br>
+
+      <input type="radio" id="descuento" name="promocion" value="descuento">
+      <label for="descuento">Descuento 5%</label><br><br>
+    </fieldset>
+
+    <!-- BOTONES -->
+    <div style="margin-top:15px; text-align:center;">
+      <button type="submit">Guardar Cambios</button>
+      <button type="reset" id="btnBorrarProducto">Borrar los datos introducidos</button>
+    </div>
+  </form>
+</body>
+</html>

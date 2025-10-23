@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Matrícula</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/login_avanzado.css">
+  <style>
+    .matricula-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .matricula-container h2 {
+      text-align: center;
+      color: #1ab188;
+      margin-bottom: 30px;
+    }
+
+    .matricula-container label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .matricula-container input[type="text"],
+    .matricula-container input[type="email"],
+    .matricula-container select {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+
+    .matricula-container input:focus,
+    .matricula-container select:focus {
+      outline: none;
+      border-color: #1ab188;
+    }
+
+    .matricula-container input:invalid:not(:placeholder-shown) {
+      border-color: #e74c3c;
+    }
+
+    .matricula-container input:valid:not(:placeholder-shown) {
+      border-color: #1ab188;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button-group input[type="submit"],
+    .button-group button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .button-group input[type="submit"] {
+      background: #1ab188;
+      color: white;
+    }
+
+    .button-group input[type="submit"]:hover {
+      background: #179b77;
+    }
+
+    .button-group button {
+      background: #3498db;
+      color: white;
+    }
+
+    .button-group button:hover {
+      background: #2980b9;
+    }
+
+    .req {
+      color: #e74c3c;
+    }
+
+    /* Lista de matrículas guardadas */
+    .matriculas-guardadas {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 10px;
+    }
+
+    .matriculas-guardadas h3 {
+      color: #1ab188;
+      margin-bottom: 15px;
+    }
+
+    .matricula-item {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border-left: 4px solid #1ab188;
+    }
+
+    .matricula-item strong {
+      color: #333;
+    }
+
+    .matricula-item .fecha {
+      font-size: 12px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .no-matriculas {
+      text-align: center;
+      color: #999;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="matricula-container">
+    <h2>Formulario de Matrícula</h2>
+
+    <form id="FormMatricula" name="FormMatricula">
+      
+      <label for="estudiante">Nombre del Estudiante: <span class="req">*</span></label>
+      <input 
+        type="text" 
+        id="estudiante" 
+        name="estudiante" 
+        placeholder="Nombre completo del estudiante" 
+        required
+        minlength="3"
+        maxlength="100"
+        pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+"
+        title="Solo letras y espacios, mínimo 3 caracteres">
+
+      <label for="codigo">Código de Estudiante: <span class="req">*</span></label>
+      <input 
+        type="text" 
+        id="codigo" 
+        name="codigo" 
+        placeholder="Ej: EST2024001" 
+        required
+        minlength="5"
+        maxlength="20"
+        pattern="[A-Za-z0-9]+"
+        title="Solo letras y números, mínimo 5 caracteres">
+
+      <label for="correo">Correo Electrónico: <span class="req">*</span></label>
+      <input 
+        type="email" 
+        id="correo" 
+        name="correo" 
+        placeholder="estudiante@ejemplo.com" 
+        required
+        title="Ingrese un correo electrónico válido">
+
+      <label for="asignatura">Asignatura: <span class="req">*</span></label>
+      <select id="asignatura" name="asignatura" required>
+        <option value="">-- Seleccione una asignatura --</option>
+        <option value="Matemáticas">Matemáticas</option>
+        <option value="Física">Física</option>
+        <option value="Química">Química</option>
+        <option value="Programación">Programación</option>
+        <option value="Base de Datos">Base de Datos</option>
+        <option value="Redes">Redes</option>
+        <option value="Inglés">Inglés</option>
+        <option value="Desarrollo Web">Desarrollo Web</option>
+      </select>
+
+      <label for="semestre">Semestre: <span class="req">*</span></label>
+      <select id="semestre" name="semestre" required>
+        <option value="">-- Seleccione --</option>
+        <option value="1">Primero</option>
+        <option value="2">Segundo</option>
+        <option value="3">Tercero</option>
+        <option value="4">Cuarto</option>
+        <option value="5">Quinto</option>
+        <option value="6">Sexto</option>
+        <option value="7">Séptimo</option>
+        <option value="8">Octavo</option>
+      </select>
+
+      <div class="button-group">
+        <input type="submit" id="btnMatriculaEnviar" value="Enviar Matrícula">
+        <button type="button" id="btnGuardarMatricula">💾 Guardar Datos</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Sección de matrículas guardadas -->
+  <div class="matriculas-guardadas" id="matriculasGuardadas" style="display:none;">
+    <h3>📋 Matrículas Guardadas</h3>
+    <div id="listaMatriculas"></div>
+    <div style="text-align:center; margin-top:15px;">
+      <button 
+        type="button" 
+        id="btnLimpiarMatriculas"
+        style="padding:10px 20px; background:#e74c3c; color:white; border:none; border-radius:5px; cursor:pointer;">
+        🗑️ Limpiar Todas las Matrículas
+      </button>
+    </div>
+  </div>
+
+ 
+</body>
+</html>
